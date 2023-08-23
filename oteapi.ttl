@@ -6,6 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @base <http://emmo.info/oteio> .
 
 <http://emmo.info/oteio> rdf:type owl:Ontology ;
@@ -46,6 +47,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessRights
 :accessRights rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf dcterms:accessRights ;
               rdfs:subPropertyOf :hasProperty ;
               rdfs:domain :ResourceConfig ;
               rdfs:range rdfs:Resource ;
@@ -55,6 +57,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessService
 :accessService rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf dcat:accessService ;
                rdfs:subPropertyOf :hasProperty ;
                rdfs:domain :ResourceConfig ;
                rdfs:range rdfs:Resource ;
@@ -64,6 +67,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessUrl
 :accessUrl rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dcat:accessUrl ;
            rdfs:subPropertyOf :hasProperty ;
            rdfs:domain :ResourceConfig ;
            rdfs:range rdfs:Resource ;
@@ -158,6 +162,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
 
 ###  http://emmo.info/oteio#downloadUrl
 :downloadUrl rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dcat:downloadUrl ;
              rdfs:subPropertyOf :hasProperty ;
              rdfs:domain :ResourceConfig ;
              rdfs:range rdfs:Resource ;
@@ -246,6 +251,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
 
 ###  http://emmo.info/oteio#mediaType
 :mediaType rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dcat:mediaType ;
            rdfs:subPropertyOf :hasProperty ;
            rdfs:domain :ResourceConfig ;
            rdfs:range rdfs:Resource ;
