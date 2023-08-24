@@ -9,9 +9,10 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @base <http://emmo.info/oteio> .
 
-<http://emmo.info/oteio> rdf:type owl:Ontology ;
-                                  owl:versionIRI <http://emmo.info/0.3.0/oteio> ;
+<http://emmo.info/oteio/oteapi> rdf:type owl:Ontology ;
+                                  owl:versionIRI <http://emmo.info/oteio/0.3.0/oteapi> ;
                                   dcterms:creator "Daniel Marchand, SINTEF" ,
+                                                  "Treesa Rose Joseph, SINTEF" ,
                                                   "Jesper Friis, SINTEF" ,
                                                   "Thomas F. Hagelien, SINTEF" ;
                                   owl:versionInfo "0.3.0" .
