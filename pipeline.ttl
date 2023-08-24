@@ -10,16 +10,15 @@
 
 <http://emmo.info/oteio/pipeline> rdf:type owl:Ontology ;
                                    owl:versionIRI <http://emmo.info/oteio/0.3.0/pipeline> ;
-                                   owl:imports <http://emmo.info/emmo/1.0.0-beta4/disciplines/computerscience> ,
-                                               <http://emmo.info/emmo/1.0.0-beta4/multiperspective/workflow> ,
-                                               <http://emmo.info/emmo/1.0.0-beta4/perspectives/data> ;
+                                   owl:imports <http://emmo.info/emmo/1.0.0-beta5/disciplines/computerscience> ,
+                                               <http://emmo.info/emmo/1.0.0-beta5/multiperspective/workflow> ,
+                                               <http://emmo.info/emmo/1.0.0-beta5/perspectives/data> ;
                                    dcterms:abstract "An EMMO-based ontology providing a semantic description of OTEAPI pipelines." ;
                                    dcterms:author "Jesper Friis, SINTEF" ,
                                                   "Thomas F. Hagelien, SINTEF" ,
                                                   "Treesa Rose Joseph, SINTEF" ;
                                    dcterms:title "Pipeline Application Ontology" ;
                                    owl:versionInfo "0.3.0" .
-
 
 #################################################################
 #    Annotation properties
@@ -37,22 +36,26 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://emmo.info/oteio#hasConfigurationKey
-:hasConfigurationKey rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf <http://emmo.info/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe> ;
-                     rdfs:domain :KeyValuePair ;
-                     rdfs:range :ConfigurationKey ;
-                     <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a configuration key-value pair to its key."@en ;
-                     skos:prefLabel "hasConfigurationKey"@en .
+###  http://emmo.info/emmo/perspectives/manufacturing#EMMO_36e69413_8c59_4799_946c_10b05d266e22
+<http://emmo.info/emmo/perspectives/manufacturing#EMMO_36e69413_8c59_4799_946c_10b05d266e22> rdf:type owl:ObjectProperty .
 
 
-###  http://emmo.info/oteio#hasConfigurationValue
-:hasConfigurationValue rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf <http://emmo.info/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe> ;
-                       rdfs:domain :KeyValuePair ;
-                       rdfs:range :ConfigurationValue ;
-                       <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a configuration key-value pair to its value."@en ;
-                       skos:prefLabel "hasConfigurationValue"@en .
+###  http://emmo.info/oteio#hasDictionaryKey
+:hasDictionaryKey rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf <http://emmo.info/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe> ;
+                  rdfs:domain :KeyValuePair ;
+                  rdfs:range :DictionaryKey ;
+                  <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a configuration key-value pair to its key."@en ;
+                  skos:prefLabel "hasDictionaryKey"@en .
+
+
+###  http://emmo.info/oteio#hasDictionaryValue
+:hasDictionaryValue rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf <http://emmo.info/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe> ;
+                    rdfs:domain :KeyValuePair ;
+                    rdfs:range :DictionaryValue ;
+                    <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a configuration key-value pair to its value."@en ;
+                    skos:prefLabel "hasDictionaryValue"@en .
 
 
 ###  http://emmo.info/oteio#hasFilter
@@ -81,7 +84,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 ###  http://emmo.info/oteio#hasKeyValuePair
 :hasKeyValuePair rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf <http://emmo.info/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe> ;
-                 rdfs:domain :Configuration ;
+                 rdfs:domain :Dictionary ;
                  rdfs:range :KeyValuePair ;
                  <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a configuration to one of its underlying key-value pairs."@en ;
                  skos:prefLabel "hasKeyValuePair"@en .
@@ -126,34 +129,30 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#Configuration
 :Configuration rdf:type owl:Class ;
-               rdfs:subClassOf <http://emmo.info/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a> ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasKeyValuePair ;
-                                 owl:someValuesFrom :KeyValuePair
-                               ] ;
-               <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A dataset that configures a filter built up of key-value pairs."@en ;
+               rdfs:subClassOf :Dictionary ;
+               <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A dictionary that configures a filter."@en ;
                skos:prefLabel "Configuration"@en .
-
-
-###  http://emmo.info/oteio#ConfigurationKey
-:ConfigurationKey rdf:type owl:Class ;
-                  rdfs:subClassOf <http://emmo.info/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a> ,
-                                  <http://emmo.info/emmo#EMMO_50ea1ec5_f157_41b0_b46b_a9032f17ca10> ;
-                  <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The key in a configuration key-value pair."@en ;
-                  skos:prefLabel "ConfigurationKey"@en .
-
-
-###  http://emmo.info/oteio#ConfigurationValue
-:ConfigurationValue rdf:type owl:Class ;
-                    rdfs:subClassOf <http://emmo.info/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a> ;
-                    <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The value in a configuration key-value pair."@en ;
-                    skos:prefLabel "ConfigurationValue"@en .
 
 
 ###  http://emmo.info/oteio#DataResourceStrategy
 :DataResourceStrategy rdf:type owl:Class ;
                       rdfs:subClassOf :Strategy ;
                       skos:prefLabel "DataResourceStrategy"@en .
+
+
+###  http://emmo.info/oteio#DictionaryKey
+:DictionaryKey rdf:type owl:Class ;
+               rdfs:subClassOf <http://emmo.info/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a> ,
+                               <http://emmo.info/emmo#EMMO_50ea1ec5_f157_41b0_b46b_a9032f17ca10> ;
+               <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The key in a configuration key-value pair."@en ;
+               skos:prefLabel "DictionaryKey"@en .
+
+
+###  http://emmo.info/oteio#DictionaryValue
+:DictionaryValue rdf:type owl:Class ;
+                 rdfs:subClassOf <http://emmo.info/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a> ;
+                 <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The value in a configuration key-value pair."@en ;
+                 skos:prefLabel "DictionaryValue"@en .
 
 
 ###  http://emmo.info/oteio#Filter
@@ -196,14 +195,14 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 :KeyValuePair rdf:type owl:Class ;
               rdfs:subClassOf <http://emmo.info/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a> ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasConfigurationKey ;
+                                owl:onProperty :hasDictionaryKey ;
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :ConfigurationKey
+                                owl:onClass :DictionaryKey
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasConfigurationValue ;
+                                owl:onProperty :hasDictionaryValue ;
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :ConfigurationValue
+                                owl:onClass :DictionaryValue
                               ] ;
               <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A key-value pair in a configuration."@en ;
               skos:prefLabel "KeyValuePair"@en .
@@ -253,6 +252,17 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 :TransformationStrategy rdf:type owl:Class ;
                         rdfs:subClassOf :Strategy ;
                         skos:prefLabel "TransformationStrategy"@en .
+
+
+###  http://emmo.info/oteio/pipeline#Dictionary
+:Dictionary rdf:type owl:Class ;
+            rdfs:subClassOf <http://emmo.info/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a> ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasKeyValuePair ;
+                              owl:someValuesFrom :KeyValuePair
+                            ] ;
+            <http://emmo.info/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A dataset that is built up of key-value pairs."@en ;
+            skos:prefLabel "Dictionary"@en .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
