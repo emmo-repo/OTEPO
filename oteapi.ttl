@@ -3,19 +3,19 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@base <http://emmo.info/oteio> .
+@base <http://emmo.info/oteio#> .
 
 <http://emmo.info/oteio/oteapi> rdf:type owl:Ontology ;
-                                  owl:versionIRI <http://emmo.info/oteio/0.3.0/oteapi> ;
-                                  dcterms:creator "Daniel Marchand, SINTEF" ,
-                                                  "Treesa Rose Joseph, SINTEF" ,
-                                                  "Jesper Friis, SINTEF" ,
-                                                  "Thomas F. Hagelien, SINTEF" ;
-                                  owl:versionInfo "0.3.0" .
+                                 owl:versionIRI <http://emmo.info/oteio/0.3.0/oteapi> ;
+                                 dcterms:creator "Daniel Marchand, SINTEF" ,
+                                                 "Jesper Friis, SINTEF" ,
+                                                 "Thomas F. Hagelien, SINTEF" ,
+                                                 "Treesa Rose Joseph, SINTEF" ;
+                                 owl:versionInfo "0.3.0" .
 
 #################################################################
 #    Annotation properties
@@ -48,8 +48,8 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessRights
 :accessRights rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf dcterms:accessRights ;
-              rdfs:subPropertyOf :hasProperty ;
+              rdfs:subPropertyOf :hasProperty ,
+                                 dcterms:accessRights ;
               rdfs:domain :ResourceConfig ;
               rdfs:range rdfs:Resource ;
               rdfs:comment "A rights statement that concerns how the distribution is accessed."@en ;
@@ -58,8 +58,8 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessService
 :accessService rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf dcat:accessService ;
-               rdfs:subPropertyOf :hasProperty ;
+               rdfs:subPropertyOf :hasProperty ,
+                                  dcat:accessService ;
                rdfs:domain :ResourceConfig ;
                rdfs:range rdfs:Resource ;
                rdfs:comment "A data service that gives access to the distribution of the dataset."@en ;
@@ -68,8 +68,8 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 
 ###  http://emmo.info/oteio#accessUrl
 :accessUrl rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf dcat:accessUrl ;
-           rdfs:subPropertyOf :hasProperty ;
+           rdfs:subPropertyOf :hasProperty ,
+                              dcat:accessUrl ;
            rdfs:domain :ResourceConfig ;
            rdfs:range rdfs:Resource ;
            rdfs:comment """A URL of the resource that gives access to a distribution of the dataset. E.g. landing page, feed, SPARQL endpoint.
@@ -163,8 +163,8 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
 
 ###  http://emmo.info/oteio#downloadUrl
 :downloadUrl rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf dcat:downloadUrl ;
-             rdfs:subPropertyOf :hasProperty ;
+             rdfs:subPropertyOf :hasProperty ,
+                                dcat:downloadUrl ;
              rdfs:domain :ResourceConfig ;
              rdfs:range rdfs:Resource ;
              rdfs:comment """Definition: The URL of the downloadable file in a given format. E.g. CSV file or RDF file.
@@ -252,8 +252,8 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
 
 ###  http://emmo.info/oteio#mediaType
 :mediaType rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf dcat:mediaType ;
-           rdfs:subPropertyOf :hasProperty ;
+           rdfs:subPropertyOf :hasProperty ,
+                              dcat:mediaType ;
            rdfs:domain :ResourceConfig ;
            rdfs:range rdfs:Resource ;
            rdfs:comment """The media type of the distribution as defined by IANA [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].
@@ -352,6 +352,62 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
          rdfs:label "triples"@en .
 
 
+###  http://purl.org/dc/terms/accessRights
+dcterms:accessRights rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dcat#accessService
+dcat:accessService rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dcat#accessUrl
+dcat:accessUrl rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dcat#downloadUrl
+dcat:downloadUrl rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dcat#mediaType
+dcat:mediaType rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://emmo.info/oteio#hasPypiPackageName
+:hasPypiPackageName rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Relates a mapping function to the name of the PyPI package that provides it."@en ;
+                    skos:prefLabel "hasPypiPackageName"@en .
+
+
+###  http://emmo.info/oteio#hasPythonFunctionName
+:hasPythonFunctionName rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:range xsd:string ;
+                       rdfs:comment "Relates a mapping function to the name of the Python function implementing it."@en ;
+                       skos:prefLabel "hasPythonFunctionName"@en .
+
+
+###  http://emmo.info/oteio#hasPythonModuleName
+:hasPythonModuleName rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "Relates a mapping function to the fully qualified name of the Python module that implements it."@en ;
+                     skos:prefLabel "hasPythonModuleName"@en .
+
+
+###  http://emmo.info/oteio#hasPythonPackageName
+:hasPythonPackageName rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Relates a mapping function to the name of the Python package that implements it."@en ;
+                      skos:prefLabel "hasPythonPackageName"@en .
+
+
 #################################################################
 #    Classes
 #################################################################
@@ -443,4 +499,4 @@ a configuration object."""@en ;
 rdfs:Resource rdf:type owl:Class .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
