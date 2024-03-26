@@ -52,7 +52,9 @@ jobs:
           #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
 
       - name: Generate documentation
-        run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
+        #run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
+        run: |
+          pylode -i pipeline.ttl -o build/oteio.html -p ontdoc
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
