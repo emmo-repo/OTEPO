@@ -12,6 +12,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Grant action the permissions it needs
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,3 +64,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build  # The folder the action should deploy.
+          branch: gh-pages
+          git-config-name: "OTEIO CD_publish Github Action"
+          git-config-email: team40@sintef.no
