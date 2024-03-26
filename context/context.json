@@ -36,6 +36,6 @@
   },
   "mappingType": "oteio:mappingType",
   "prefixes": "oteio:prefixes",
-  "triples": "oteio:triples",
+  "triples": "oteio:triples"
 
 }
