@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pipeline Application Ontology</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1Sew
+EAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-con,
+        .sup-col {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-con {
+            color:orange;
+        }
+
+        .sup-col {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "https://w3id.org/emmo/domain/oteio/pipeline",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Pipeline Application Ontology"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.13.2</span>
+  </div>
+  <h1>Pipeline Application Ontology</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>URI</dt>
+        <dd><code>https://w3id.org/emmo/domain/oteio/pipeline</code></dd>
+        <dt>Version Information</dt>
+        <dd>0.4.0</dd>
+        <dt>Version URI</dt>
+        <dd><a href="https://w3id.org/emmo/domain/oteio/0.4.0/pipeline">https://w3id.org/emmo/domain/oteio/0.4.0/pipeline</a></dd>
+        <dt>Imports</dt>
+        <dd>
+            <a href="http://emmo.info/emmo/1.0.0-rc1/disciplines/computerscience">http://emmo.info/emmo/1.0.0-rc1/disciplines/computerscience</a><br/>
+            <a href="http://emmo.info/emmo/1.0.0-rc1/multiperspective/workflow">http://emmo.info/emmo/1.0.0-rc1/multiperspective/workflow</a><br/>
+            <a href="http://emmo.info/emmo/1.0.0-rc1/perspectives/data">http://emmo.info/emmo/1.0.0-rc1/perspectives/data</a><br/>
+        </dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="pipeline.ttl">RDF (turtle)</a></dd>
+    </dl>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#objectproperties">Object Properties</a></li>
+        <li><a href="#datatypeproperties">Datatype Properties</a></li>
+        <li><a href="#annotationproperties">Annotation Properties</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+<section id="overview">
+    <h2>Overview</h2>
+    <div class="figure">
+        <div style="width:500px; height:50px; background-color: lightgrey; border:solid 2px grey; padding:10px;margin-bottom:5px; text-align:center;">Pictures say 1,000 words</div>
+        <div class="caption"><strong>Figure 1:</strong> Ontology overview</div>
+    </div>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+      <li><a href="https://w3id.org/emmo/domain/oteio#Configuration">https://w3id.org/emmo/domain/oteio#Configuration</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#DataResourceStrategy">https://w3id.org/emmo/domain/oteio#DataResourceStrategy</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#Dictionary">https://w3id.org/emmo/domain/oteio#Dictionary</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#DictionaryKey">https://w3id.org/emmo/domain/oteio#DictionaryKey</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#DictionaryValue">https://w3id.org/emmo/domain/oteio#DictionaryValue</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#Filter">https://w3id.org/emmo/domain/oteio#Filter</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#FilterStrategy">https://w3id.org/emmo/domain/oteio#FilterStrategy</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#FunctionStrategy">https://w3id.org/emmo/domain/oteio#FunctionStrategy</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#KeyValuePair">https://w3id.org/emmo/domain/oteio#KeyValuePair</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#MappingStrategy">https://w3id.org/emmo/domain/oteio#MappingStrategy</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#Pipeline">https://w3id.org/emmo/domain/oteio#Pipeline</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#SessionUpdate">https://w3id.org/emmo/domain/oteio#SessionUpdate</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a></li>
+      <li><a href="https://w3id.org/emmo/domain/oteio#TransformationStrategy">https://w3id.org/emmo/domain/oteio#TransformationStrategy</a></li>
+    </ul>
+    <div class="entity class" id="Configuration">
+        <h3>
+          Configuration<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Configuration" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#Configuration</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Dictionary">https://w3id.org/emmo/domain/oteio#Dictionary</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasFilterConfigurationData">https://w3id.org/emmo/domain/oteio#hasFilterConfigurationData</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="DataResourceStrategy">
+        <h3>
+          DataResourceStrategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#DataResourceStrategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#DataResourceStrategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Dictionary">
+        <h3>
+          Dictionary<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Dictionary" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#Dictionary</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a">https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasKeyValuePair">https://w3id.org/emmo/domain/oteio#hasKeyValuePair</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#KeyValuePair">https://w3id.org/emmo/domain/oteio#KeyValuePair</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Configuration">https://w3id.org/emmo/domain/oteio#Configuration</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasKeyValuePair">https://w3id.org/emmo/domain/oteio#hasKeyValuePair</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="DictionaryKey">
+        <h3>
+          DictionaryKey<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#DictionaryKey" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#DictionaryKey</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a">https://w3id.org/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo#EMMO_50ea1ec5_f157_41b0_b46b_a9032f17ca10">https://w3id.org/emmo#EMMO_50ea1ec5_f157_41b0_b46b_a9032f17ca10</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryKey">https://w3id.org/emmo/domain/oteio#hasDictionaryKey</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="DictionaryValue">
+        <h3>
+          DictionaryValue<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#DictionaryValue" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#DictionaryValue</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a">https://w3id.org/emmo#EMMO_50d6236a_7667_4883_8ae1_9bb5d190423a</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryValue">https://w3id.org/emmo/domain/oteio#hasDictionaryValue</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Filter">
+        <h3>
+          Filter<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Filter" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#Filter</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_9f6ec830_c59f_46aa_8a22_945ba20b6ea3">https://w3id.org/emmo#EMMO_9f6ec830_c59f_46aa_8a22_945ba20b6ea3</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/emmo/perspectives/manufacturing#EMMO_36e69413_8c59_4799_946c_10b05d266e22">https://w3id.org/emmo/perspectives/manufacturing#EMMO_36e69413_8c59_4799_946c_10b05d266e22</a> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#Configuration">https://w3id.org/emmo/domain/oteio#Configuration</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasImplementation">https://w3id.org/emmo/domain/oteio#hasImplementation</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="n56d1e48924fc40dcb0311d4e94d755b8b5">n56d1e48924fc40dcb0311d4e94d755b8b5</a> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#Pipeline">https://w3id.org/emmo/domain/oteio#Pipeline</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo#EMMO_c4bace1d_4db0_4cd3_87e9_18122bae2840">https://w3id.org/emmo#EMMO_c4bace1d_4db0_4cd3_87e9_18122bae2840</a> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#SessionUpdate">https://w3id.org/emmo/domain/oteio#SessionUpdate</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="FilterStrategy">
+        <h3>
+          FilterStrategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#FilterStrategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#FilterStrategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="FunctionStrategy">
+        <h3>
+          FunctionStrategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#FunctionStrategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#FunctionStrategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="KeyValuePair">
+        <h3>
+          KeyValuePair<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#KeyValuePair" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#KeyValuePair</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a">https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryValue">https://w3id.org/emmo/domain/oteio#hasDictionaryValue</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="https://w3id.org/emmo/domain/oteio#DictionaryValue">https://w3id.org/emmo/domain/oteio#DictionaryValue</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryKey">https://w3id.org/emmo/domain/oteio#hasDictionaryKey</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="https://w3id.org/emmo/domain/oteio#DictionaryKey">https://w3id.org/emmo/domain/oteio#DictionaryKey</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryValue">https://w3id.org/emmo/domain/oteio#hasDictionaryValue</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasDictionaryKey">https://w3id.org/emmo/domain/oteio#hasDictionaryKey</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasKeyValuePair">https://w3id.org/emmo/domain/oteio#hasKeyValuePair</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="MappingStrategy">
+        <h3>
+          MappingStrategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#MappingStrategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#MappingStrategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Pipeline">
+        <h3>
+          Pipeline<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Pipeline" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#Pipeline</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_64963ed6_39c9_4258_85e0_6466c4b5420c">https://w3id.org/emmo#EMMO_64963ed6_39c9_4258_85e0_6466c4b5420c</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Restrictions</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasFirstFilter">https://w3id.org/emmo/domain/oteio#hasFirstFilter</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="https://w3id.org/emmo/domain/oteio#Filter">https://w3id.org/emmo/domain/oteio#Filter</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasFilter">https://w3id.org/emmo/domain/oteio#hasFilter</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">some</span> <a href="https://w3id.org/emmo/domain/oteio#Filter">https://w3id.org/emmo/domain/oteio#Filter</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#hasLastFilter">https://w3id.org/emmo/domain/oteio#hasLastFilter</a><sup class="sup-op" title="object property">op</sup> <span class="cardinality">exactly</span> 1 <a href="https://w3id.org/emmo/domain/oteio#Filter">https://w3id.org/emmo/domain/oteio#Filter</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="SessionUpdate">
+        <h3>
+          SessionUpdate<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#SessionUpdate" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#SessionUpdate</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a">https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Strategy">
+        <h3>
+          Strategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Strategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#Strategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_65411b3d_c8d3_4111_86a9_a2ce0a64c647">https://w3id.org/emmo#EMMO_65411b3d_c8d3_4111_86a9_a2ce0a64c647</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#MappingStrategy">https://w3id.org/emmo/domain/oteio#MappingStrategy</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#DataResourceStrategy">https://w3id.org/emmo/domain/oteio#DataResourceStrategy</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#FilterStrategy">https://w3id.org/emmo/domain/oteio#FilterStrategy</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#FunctionStrategy">https://w3id.org/emmo/domain/oteio#FunctionStrategy</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/emmo/domain/oteio#TransformationStrategy">https://w3id.org/emmo/domain/oteio#TransformationStrategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="TransformationStrategy">
+        <h3>
+          TransformationStrategy<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#TransformationStrategy" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#TransformationStrategy</code></td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Strategy">https://w3id.org/emmo/domain/oteio#Strategy</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="objectproperties">
+    <h2>Object Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#EMMO_36e69413_8c59_4799_946c_10b05d266e22">EMMO_36e69413_8c59_4799_946c_10b05d266e22</a></li>
+        <li><a href="#hasDictionaryKey">hasDictionaryKey</a></li>
+        <li><a href="#hasDictionaryValue">hasDictionaryValue</a></li>
+        <li><a href="#hasFilter">hasFilter</a></li>
+        <li><a href="#hasBeginFilter">hasBeginFilter</a></li>
+        <li><a href="#hasImplementation">hasImplementation</a></li>
+        <li><a href="#hasKeyValuePair">hasKeyValuePair</a></li>
+        <li><a href="#hasEndFilter">hasEndFilter</a></li>
+        <li><a href="#hasNextFilter">hasNextFilter</a></li>
+    </ul>
+    <div class="entity property" id="EMMO_36e69413_8c59_4799_946c_10b05d266e22">
+        <h3>EMMO_36e69413_8c59_4799_946c_10b05d266e22<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#EMMO_36e69413_8c59_4799_946c_10b05d266e22" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo#EMMO_36e69413_8c59_4799_946c_10b05d266e22</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasDictionaryKey">
+        <h3>hasDictionaryKey<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasDictionaryKey" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasDictionaryKey</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe">https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#KeyValuePair">https://w3id.org/emmo/domain/oteio#KeyValuePair</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#DictionaryKey">https://w3id.org/emmo/domain/oteio#DictionaryKey</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasDictionaryValue">
+        <h3>hasDictionaryValue<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasDictionaryValue" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasDictionaryValue</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe">https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#KeyValuePair">https://w3id.org/emmo/domain/oteio#KeyValuePair</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#DictionaryValue">https://w3id.org/emmo/domain/oteio#DictionaryValue</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasFilter">
+        <h3>hasFilter<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasFilter" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasFilter</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_65a2c5b8_e4d8_4a51_b2f8_e55effc0547d">https://w3id.org/emmo#EMMO_65a2c5b8_e4d8_4a51_b2f8_e55effc0547d</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasBeginFilter">
+        <h3>hasBeginFilter<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasBeginFilter" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasFirstFilter</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_fe63194f_7c04_4dbd_a244_524b38b6699b">https://w3id.org/emmo#EMMO_fe63194f_7c04_4dbd_a244_524b38b6699b</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasImplementation">
+        <h3>hasImplementation<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasImplementation" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasImplementation</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_8e52c42b_e879_4473_9fa1_4b23428b392b">https://w3id.org/emmo#EMMO_8e52c42b_e879_4473_9fa1_4b23428b392b</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_4299e344_a321_4ef2_a744_bacfcce80afc">https://w3id.org/emmo#EMMO_4299e344_a321_4ef2_a744_bacfcce80afc</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_8681074a_e225_4e38_b586_e85b0f43ce38">https://w3id.org/emmo#EMMO_8681074a_e225_4e38_b586_e85b0f43ce38</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasKeyValuePair">
+        <h3>hasKeyValuePair<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasKeyValuePair" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasKeyValuePair</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe">https://w3id.org/emmo#EMMO_b2282816_b7a3_44c6_b2cb_3feff1ceb7fe</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Dictionary">https://w3id.org/emmo/domain/oteio#Dictionary</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#KeyValuePair">https://w3id.org/emmo/domain/oteio#KeyValuePair</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasEndFilter">
+        <h3>hasEndFilter<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasEndFilter" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasLastFilter</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_c0f48dc6_4a32_4d9a_a956_d68415954a8e">https://w3id.org/emmo#EMMO_c0f48dc6_4a32_4d9a_a956_d68415954a8e</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasNextFilter">
+        <h3>hasNextFilter<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasNextFilter" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasNextFilter</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_499e24a5_5072_4c83_8625_fe3f96ae4a8d">https://w3id.org/emmo#EMMO_499e24a5_5072_4c83_8625_fe3f96ae4a8d</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="datatypeproperties">
+    <h2>Datatype Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#hasFilterConfigurationData">hasFilterConfigurationData</a></li>
+        <li><a href="#hasId">hasId</a></li>
+    </ul>
+    <div class="entity property" id="hasFilterConfigurationData">
+        <h3>hasFilterConfigurationData<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasFilterConfigurationData" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasFilterConfigurationData</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#b6292331_94af_4f00_976b_ea55960c2f1c">https://w3id.org/emmo#b6292331_94af_4f00_976b_ea55960c2f1c</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/emmo/domain/oteio#Configuration">https://w3id.org/emmo/domain/oteio#Configuration</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasId">
+        <h3>hasId<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasId" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/emmo/domain/oteio#hasId</code></td>
+            </tr>
+            <tr>
+                <th>Super-properties</th>
+                <td>
+                    <a href="https://w3id.org/emmo#EMMO_23b579e1_8088_45b5_9975_064014026c42">https://w3id.org/emmo#EMMO_23b579e1_8088_45b5_9975_064014026c42</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="annotationproperties">
+    <h2>Annotation Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#author">author</a></li>
+        <li><a href="#prefLabel">prefLabel</a></li>
+    </ul>
+    <div class="entity property" id="author">
+        <h3>author<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#author" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/terms/author</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="prefLabel">
+        <h3>prefLabel<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#prefLabel" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://www.w3.org/2004/02/skos/core#prefLabel</code></td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt>default (:)</dt>
+        <dd><code>https://w3id.org/emmo/domain/oteio/pipeline</code></dd>
+        <dt>brick</dt>
+        <dd><code>https://brickschema.org/schema/Brick#</code></dd>
+        <dt>csvw</dt>
+        <dd><code>http://www.w3.org/ns/csvw#</code></dd>
+        <dt>dc</dt>
+        <dd><code>http://purl.org/dc/elements/1.1/</code></dd>
+        <dt>dcam</dt>
+        <dd><code>http://purl.org/dc/dcam/</code></dd>
+        <dt>dcat</dt>
+        <dd><code>http://www.w3.org/ns/dcat#</code></dd>
+        <dt>dcmitype</dt>
+        <dd><code>http://purl.org/dc/dcmitype/</code></dd>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>doap</dt>
+        <dd><code>http://usefulinc.com/ns/doap#</code></dd>
+        <dt>foaf</dt>
+        <dd><code>http://xmlns.com/foaf/0.1/</code></dd>
+        <dt>geo</dt>
+        <dd><code>http://www.opengis.net/ont/geosparql#</code></dd>
+        <dt>odrl</dt>
+        <dd><code>http://www.w3.org/ns/odrl/2/</code></dd>
+        <dt>org</dt>
+        <dd><code>http://www.w3.org/ns/org#</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prof</dt>
+        <dd><code>http://www.w3.org/ns/dx/prof/</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>qb</dt>
+        <dd><code>http://purl.org/linked-data/cube#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>sh</dt>
+        <dd><code>http://www.w3.org/ns/shacl#</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>sosa</dt>
+        <dd><code>http://www.w3.org/ns/sosa/</code></dd>
+        <dt>ssn</dt>
+        <dd><code>http://www.w3.org/ns/ssn/</code></dd>
+        <dt>time</dt>
+        <dd><code>http://www.w3.org/2006/time#</code></dd>
+        <dt>vann</dt>
+        <dd><code>http://purl.org/vocab/vann/</code></dd>
+        <dt>void</dt>
+        <dd><code>http://rdfs.org/ns/void#</code></dd>
+        <dt>wgs</dt>
+        <dd><code>https://www.w3.org/2003/01/geo/wgs84_pos#</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">ap</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>

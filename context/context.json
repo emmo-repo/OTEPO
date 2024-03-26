@@ -1,0 +1,41 @@
+{
+  "@version": 1.1,
+
+  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  "dcterms": "http://purl.org/dc/terms/",
+  "dcat": "http://www.w3.org/ns/dcat#",
+  "oteio": "https://w3id.org/emmo/domain/oteio#",
+
+  "resources": "@nest",
+  "configuration": {
+    "@id": "oteio:configuration",
+    "@type": "@json"
+  },
+
+  "dataresource": {
+    "@id": "oteio:dataresource",
+    "@type": "oteio:DataResource",
+    "@nest": "resources"
+  },
+  "downloadURL": "dcat:downloadURL",
+  "mediaType": "dcat:mediaType",
+  "license": "dcterms:license",
+
+  "parse": {
+    "@id": "oteio:parse",
+    "@type": "oteio:Parse",
+    "@nest": "resources"
+  },
+  "parserType": "oteio:parserType",
+  "datamodel": "oteio:datamodel",
+
+  "mapping": {
+    "@id": "oteio:mapping",
+    "@type": "oteio:Mapping",
+    "@nest": "resources"
+  },
+  "mappingType": "oteio:mappingType",
+  "prefixes": "oteio:prefixes",
+  "triples": "oteio:triples",
+
+}
