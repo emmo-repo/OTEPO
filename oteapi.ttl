@@ -1,4 +1,4 @@
-@prefix : <http://emmo.info/oteio#> .
+@prefix : <https://w3id.org/emmo/domain/oteio#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -7,15 +7,16 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://emmo.info/oteio#> .
+@prefix emmo: <https://w3id.org/emmo#> .
+@base <https://w3id.org/emmo/domain/oteio#> .
 
-<http://emmo.info/oteio/oteapi> rdf:type owl:Ontology ;
-                                 owl:versionIRI <http://emmo.info/oteio/0.3.0/oteapi> ;
+<https://w3id.org/emmo/domain/oteio/oteapi> rdf:type owl:Ontology ;
+                                 owl:versionIRI <https://w3id.org/emmo/domain/oteio/0.4.0/oteapi> ;
                                  dcterms:creator "Daniel Marchand, SINTEF" ,
                                                  "Jesper Friis, SINTEF" ,
                                                  "Thomas F. Hagelien, SINTEF" ,
                                                  "Treesa Rose Joseph, SINTEF" ;
-                                 owl:versionInfo "0.3.0" .
+                                 owl:versionInfo "0.4.0" .
 
 #################################################################
 #    Annotation properties
@@ -37,7 +38,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://emmo.info/oteio#accessKey
+###  https://w3id.org/emmo/domain/oteio#accessKey
 :accessKey rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasProperty ;
            rdfs:domain :DataCacheConfig ;
@@ -46,7 +47,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
            rdfs:label "accessKey"@en .
 
 
-###  http://emmo.info/oteio#accessRights
+###  https://w3id.org/emmo/domain/oteio#accessRights
 :accessRights rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :hasProperty ,
                                  dcterms:accessRights ;
@@ -56,7 +57,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
               rdfs:label "accessRights"@en .
 
 
-###  http://emmo.info/oteio#accessService
+###  https://w3id.org/emmo/domain/oteio#accessService
 :accessService rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf :hasProperty ,
                                   dcat:accessService ;
@@ -66,7 +67,7 @@ skos:prefLabel rdf:type owl:AnnotationProperty .
                rdfs:label "accessService"@en .
 
 
-###  http://emmo.info/oteio#accessUrl
+###  https://w3id.org/emmo/domain/oteio#accessUrl
 :accessUrl rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasProperty ,
                               dcat:accessUrl ;
@@ -79,7 +80,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
            rdfs:label "accessUrl"@en .
 
 
-###  http://emmo.info/oteio#agraphHost
+###  https://w3id.org/emmo/domain/oteio#agraphHost
 :agraphHost rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasProperty ;
             rdfs:domain :TripleStoreConfig ;
@@ -88,7 +89,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
             rdfs:label "agraphHost"@en .
 
 
-###  http://emmo.info/oteio#agraphPassword
+###  https://w3id.org/emmo/domain/oteio#agraphPassword
 :agraphPassword rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :hasProperty ;
                 rdfs:domain :TripleStoreConfig ;
@@ -97,7 +98,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
                 rdfs:label "agraphPassword"@en .
 
 
-###  http://emmo.info/oteio#agraphPort
+###  https://w3id.org/emmo/domain/oteio#agraphPort
 :agraphPort rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasProperty ;
             rdfs:domain :TripleStoreConfig ;
@@ -106,7 +107,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
             rdfs:label "agraphPort"@en .
 
 
-###  http://emmo.info/oteio#agraphUser
+###  https://w3id.org/emmo/domain/oteio#agraphUser
 :agraphUser rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasProperty ;
             rdfs:domain :TripleStoreConfig ;
@@ -115,7 +116,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
             rdfs:label "agraphUser"@en .
 
 
-###  http://emmo.info/oteio#cacheDir
+###  https://w3id.org/emmo/domain/oteio#cacheDir
 :cacheDir rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :hasProperty ;
           rdfs:domain :DataCacheConfig ;
@@ -124,7 +125,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
           rdfs:label "cacheDir"@en .
 
 
-###  http://emmo.info/oteio#condition
+###  https://w3id.org/emmo/domain/oteio#condition
 :condition rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasProperty ;
            rdfs:domain :FilterConfig ;
@@ -133,7 +134,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
            rdfs:label "condition"@en .
 
 
-###  http://emmo.info/oteio#configuration
+###  https://w3id.org/emmo/domain/oteio#configuration
 :configuration rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf :hasProperty ;
                rdfs:domain :FilterConfig ,
@@ -147,7 +148,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
                rdfs:label "configuration"@en .
 
 
-###  http://emmo.info/oteio#description
+###  https://w3id.org/emmo/domain/oteio#description
 :description rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasProperty ;
              rdfs:domain :FilterConfig ,
@@ -161,7 +162,7 @@ Usage: `accessURL` *SHOULD* be used for the URL of a service or location that ca
              rdfs:label "description"@en .
 
 
-###  http://emmo.info/oteio#downloadUrl
+###  https://w3id.org/emmo/domain/oteio#downloadUrl
 :downloadUrl rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasProperty ,
                                 dcat:downloadUrl ;
@@ -173,7 +174,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
              rdfs:label "downloadUrl"@en .
 
 
-###  http://emmo.info/oteio#due
+###  https://w3id.org/emmo/domain/oteio#due
 :due rdf:type owl:ObjectProperty ;
      rdfs:subPropertyOf :hasProperty ;
      rdfs:domain :TransformationConfig ;
@@ -182,7 +183,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
      rdfs:label "due"@en .
 
 
-###  http://emmo.info/oteio#expireTime
+###  https://w3id.org/emmo/domain/oteio#expireTime
 :expireTime rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasProperty ;
             rdfs:domain :DataCacheConfig ;
@@ -191,7 +192,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
             rdfs:label "expireTime"@en .
 
 
-###  http://emmo.info/oteio#filterType
+###  https://w3id.org/emmo/domain/oteio#filterType
 :filterType rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasProperty ;
             rdfs:domain :FilterConfig ;
@@ -200,7 +201,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
             rdfs:label "filterType"@en .
 
 
-###  http://emmo.info/oteio#functionType
+###  https://w3id.org/emmo/domain/oteio#functionType
 :functionType rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :hasProperty ;
               rdfs:domain :FunctionConfig ;
@@ -209,12 +210,12 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
               rdfs:label "functionType"@en .
 
 
-###  http://emmo.info/oteio#hasProperty
+###  https://w3id.org/emmo/domain/oteio#hasProperty
 :hasProperty rdf:type owl:ObjectProperty ;
              rdfs:label "hasProperty"@en .
 
 
-###  http://emmo.info/oteio#hashType
+###  https://w3id.org/emmo/domain/oteio#hashType
 :hashType rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :hasProperty ;
           rdfs:domain :DataCacheConfig ;
@@ -223,7 +224,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
           rdfs:label "hashType"@en .
 
 
-###  http://emmo.info/oteio#license
+###  https://w3id.org/emmo/domain/oteio#license
 :license rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf :hasProperty ;
          rdfs:domain :ResourceConfig ;
@@ -232,7 +233,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
          rdfs:label "license"@en .
 
 
-###  http://emmo.info/oteio#limit
+###  https://w3id.org/emmo/domain/oteio#limit
 :limit rdf:type owl:ObjectProperty ;
        rdfs:subPropertyOf :hasProperty ;
        rdfs:domain :FilterConfig ;
@@ -241,7 +242,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
        rdfs:label "limit"@en .
 
 
-###  http://emmo.info/oteio#mappingType
+###  https://w3id.org/emmo/domain/oteio#mappingType
 :mappingType rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasProperty ;
              rdfs:domain :MappingConfig ;
@@ -250,7 +251,7 @@ Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is 
              rdfs:label "mappingType"@en .
 
 
-###  http://emmo.info/oteio#mediaType
+###  https://w3id.org/emmo/domain/oteio#mediaType
 :mediaType rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasProperty ,
                               dcat:mediaType ;
@@ -262,7 +263,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
            rdfs:label "mediaType"@en .
 
 
-###  http://emmo.info/oteio#name
+###  https://w3id.org/emmo/domain/oteio#name
 :name rdf:type owl:ObjectProperty ;
       rdfs:subPropertyOf :hasProperty ;
       rdfs:domain :TransformationConfig ;
@@ -271,7 +272,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
       rdfs:label "name"@en .
 
 
-###  http://emmo.info/oteio#prefixes
+###  https://w3id.org/emmo/domain/oteio#prefixes
 :prefixes rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :hasProperty ;
           rdfs:domain :MappingConfig ;
@@ -280,7 +281,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
           rdfs:label "prefixes"@en .
 
 
-###  http://emmo.info/oteio#priority
+###  https://w3id.org/emmo/domain/oteio#priority
 :priority rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf :hasProperty ;
           rdfs:domain :TransformationConfig ;
@@ -289,7 +290,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
           rdfs:label "priority"@en .
 
 
-###  http://emmo.info/oteio#publisher
+###  https://w3id.org/emmo/domain/oteio#publisher
 :publisher rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasProperty ;
            rdfs:domain :ResourceConfig ;
@@ -298,7 +299,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
            rdfs:label "publisher"@en .
 
 
-###  http://emmo.info/oteio#query
+###  https://w3id.org/emmo/domain/oteio#query
 :query rdf:type owl:ObjectProperty ;
        rdfs:subPropertyOf :hasProperty ;
        rdfs:domain :FilterConfig ;
@@ -307,7 +308,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
        rdfs:label "query"@en .
 
 
-###  http://emmo.info/oteio#repositoryName
+###  https://w3id.org/emmo/domain/oteio#repositoryName
 :repositoryName rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :hasProperty ;
                 rdfs:domain :TripleStoreConfig ;
@@ -316,7 +317,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
                 rdfs:label "repositoryName"@en .
 
 
-###  http://emmo.info/oteio#secret
+###  https://w3id.org/emmo/domain/oteio#secret
 :secret rdf:type owl:ObjectProperty ;
         rdfs:subPropertyOf :hasProperty ;
         rdfs:domain :TransformationConfig ;
@@ -325,7 +326,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
         rdfs:label "secret"@en .
 
 
-###  http://emmo.info/oteio#tag
+###  https://w3id.org/emmo/domain/oteio#tag
 :tag rdf:type owl:ObjectProperty ;
      rdfs:subPropertyOf :hasProperty ;
      rdfs:domain :DataCacheConfig ;
@@ -334,7 +335,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
      rdfs:label "tag"@en .
 
 
-###  http://emmo.info/oteio#transformationType
+###  https://w3id.org/emmo/domain/oteio#transformationType
 :transformationType rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :hasProperty ;
                     rdfs:domain :TransformationConfig ;
@@ -343,7 +344,7 @@ Usage: This property *SHOULD* be used when the media type of the distribution is
                     rdfs:label "transformationType"@en .
 
 
-###  http://emmo.info/oteio#triples
+###  https://w3id.org/emmo/domain/oteio#triples
 :triples rdf:type owl:ObjectProperty ;
          rdfs:subPropertyOf :hasProperty ;
          rdfs:domain :MappingConfig ;
@@ -376,7 +377,7 @@ dcat:mediaType rdf:type owl:ObjectProperty .
 #    Data properties
 #################################################################
 
-###  http://emmo.info/oteio#hasPypiPackageName
+###  https://w3id.org/emmo/domain/oteio#hasPypiPackageName
 :hasPypiPackageName rdf:type owl:DatatypeProperty ;
                     rdfs:subPropertyOf owl:topDataProperty ;
                     rdfs:range xsd:string ;
@@ -384,7 +385,7 @@ dcat:mediaType rdf:type owl:ObjectProperty .
                     skos:prefLabel "hasPypiPackageName"@en .
 
 
-###  http://emmo.info/oteio#hasPythonFunctionName
+###  https://w3id.org/emmo/domain/oteio#hasPythonFunctionName
 :hasPythonFunctionName rdf:type owl:DatatypeProperty ;
                        rdfs:subPropertyOf owl:topDataProperty ;
                        rdfs:range xsd:string ;
@@ -392,7 +393,7 @@ dcat:mediaType rdf:type owl:ObjectProperty .
                        skos:prefLabel "hasPythonFunctionName"@en .
 
 
-###  http://emmo.info/oteio#hasPythonModuleName
+###  https://w3id.org/emmo/domain/oteio#hasPythonModuleName
 :hasPythonModuleName rdf:type owl:DatatypeProperty ;
                      rdfs:subPropertyOf owl:topDataProperty ;
                      rdfs:range xsd:string ;
@@ -400,7 +401,7 @@ dcat:mediaType rdf:type owl:ObjectProperty .
                      skos:prefLabel "hasPythonModuleName"@en .
 
 
-###  http://emmo.info/oteio#hasPythonPackageName
+###  https://w3id.org/emmo/domain/oteio#hasPythonPackageName
 :hasPythonPackageName rdf:type owl:DatatypeProperty ;
                       rdfs:subPropertyOf owl:topDataProperty ;
                       rdfs:range xsd:string ;
@@ -412,13 +413,13 @@ dcat:mediaType rdf:type owl:ObjectProperty .
 #    Classes
 #################################################################
 
-###  http://emmo.info/oteio#Configuration
+###  https://w3id.org/emmo/domain/oteio#Configuration
 :Configuration rdf:type owl:Class ;
                rdfs:comment "A configuration of a filter. It provides all the configuration a filter needs for its execution, including which strategy should be used."@en ;
                skos:prefLabel "Configuration"@en .
 
 
-###  http://emmo.info/oteio#DataCacheConfig
+###  https://w3id.org/emmo/domain/oteio#DataCacheConfig
 :DataCacheConfig rdf:type owl:Class ;
                  rdfs:subClassOf :Configuration ;
                  rdfs:comment """DataCache Configuration.
@@ -429,35 +430,35 @@ a configuration object."""@en ;
                  rdfs:label "DataCacheConfig"@en .
 
 
-###  http://emmo.info/oteio#FilterConfig
+###  https://w3id.org/emmo/domain/oteio#FilterConfig
 :FilterConfig rdf:type owl:Class ;
               rdfs:subClassOf :Configuration ;
               rdfs:comment "Filter Strategy Data Configuration."@en ;
               rdfs:label "FilterConfig"@en .
 
 
-###  http://emmo.info/oteio#FunctionConfig
+###  https://w3id.org/emmo/domain/oteio#FunctionConfig
 :FunctionConfig rdf:type owl:Class ;
                 rdfs:subClassOf :Configuration ;
                 rdfs:comment "Function Strategy Data Configuration."@en ;
                 rdfs:label "FunctionConfig"@en .
 
 
-###  http://emmo.info/oteio#GenericConfig
+###  https://w3id.org/emmo/domain/oteio#GenericConfig
 :GenericConfig rdf:type owl:Class ;
                rdfs:subClassOf :Configuration ;
                rdfs:comment "Generic class for configuration objects."@en ;
                rdfs:label "GenericConfig"@en .
 
 
-###  http://emmo.info/oteio#MappingConfig
+###  https://w3id.org/emmo/domain/oteio#MappingConfig
 :MappingConfig rdf:type owl:Class ;
                rdfs:subClassOf :Configuration ;
                rdfs:comment "Mapping Strategy Data Configuration."@en ;
                rdfs:label "MappingConfig"@en .
 
 
-###  http://emmo.info/oteio#ResourceConfig
+###  https://w3id.org/emmo/domain/oteio#ResourceConfig
 :ResourceConfig rdf:type owl:Class ;
                 rdfs:subClassOf :Configuration ;
                 rdfs:comment """Resource Strategy Data Configuration.
@@ -468,20 +469,20 @@ Important:
                 rdfs:label "ResourceConfig"@en .
 
 
-###  http://emmo.info/oteio#SessionUpdate
+###  https://w3id.org/emmo/domain/oteio#SessionUpdate
 :SessionUpdate rdf:type owl:Class ;
                rdfs:comment "Session Update Data Model for returning values."@en ;
                rdfs:label "SessionUpdate"@en .
 
 
-###  http://emmo.info/oteio#TransformationConfig
+###  https://w3id.org/emmo/domain/oteio#TransformationConfig
 :TransformationConfig rdf:type owl:Class ;
                       rdfs:subClassOf :Configuration ;
                       rdfs:comment "Transformation Strategy Data Configuration."@en ;
                       rdfs:label "TransformationConfig"@en .
 
 
-###  http://emmo.info/oteio#TripleStoreConfig
+###  https://w3id.org/emmo/domain/oteio#TripleStoreConfig
 :TripleStoreConfig rdf:type owl:Class ;
                    rdfs:subClassOf :Configuration ;
                    rdfs:comment """TripleStore Configuration.

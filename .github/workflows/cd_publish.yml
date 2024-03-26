@@ -12,6 +12,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Grant action the permissions it needs
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,26 +39,31 @@ jobs:
       - name: Copy json-ld context
         run: cp -r context build/.
 
-      - name: Generate squashed ontology
-        run: ontoconvert -saw
-          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
-          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
-          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
-          oteio.ttl build/oteio.ttl
-          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #- name: Generate squashed ontology
+      #  run: ontoconvert -saw
+      #    -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
+      #    -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #    -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #    oteio.ttl build/oteio.ttl
+      #    #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
 
-      - name: Generate inferred ontology
-        run: ontoconvert -saw --reasoner=HermiT
-          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
-          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
-          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
-          oteio.ttl build/oteio-inferred.ttl
-          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #- name: Generate inferred ontology
+      #  run: ontoconvert -saw --reasoner=HermiT
+      #    -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
+      #    -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #    -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
+      #    oteio.ttl build/oteio-inferred.ttl
+      #    #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
 
       - name: Generate documentation
-        run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
+        #run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
+        run: |
+          pylode -i pipeline.ttl -o build/oteio.html -p ontdoc
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build  # The folder the action should deploy.
+          branch: gh-pages
+          git-config-name: "OTEIO CD_publish Github Action"
+          git-config-email: team40@sintef.no
