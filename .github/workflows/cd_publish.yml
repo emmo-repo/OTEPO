@@ -36,18 +36,18 @@ jobs:
         run: cp -r context build/.
 
       - name: Generate squashed ontology
-        run: ontoconvert -saw \
-          -c http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label \
-          -c elucidation-->http://www.w3.org/2000/01/rdf-schema#comment \
-          -c definition-->http://www.w3.org/2000/01/rdf-schema#comment \
+        run: ontoconvert -saw
+          -c http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label
+          -c elucidation-->http://www.w3.org/2000/01/rdf-schema#comment
+          -c definition-->http://www.w3.org/2000/01/rdf-schema#comment
           oteio.ttl build/oteio.ttl
           #-c comment-->http://www.w3.org/2000/01/rdf-schema#comment
 
       - name: Generate inferred ontology
-        run: ontoconvert -saw --reasoner=HermiT \
-          -c http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label \
-          -c elucidation-->http://www.w3.org/2000/01/rdf-schema#comment \
-          -c definition-->http://www.w3.org/2000/01/rdf-schema#comment \
+        run: ontoconvert -saw --reasoner=HermiT
+          -c http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label
+          -c elucidation-->http://www.w3.org/2000/01/rdf-schema#comment
+          -c definition-->http://www.w3.org/2000/01/rdf-schema#comment
           oteio.ttl build/oteio-inferred.ttl
           #-c comment-->http://www.w3.org/2000/01/rdf-schema#comment
 
