@@ -9,12 +9,201 @@
 @base <http://w3id.org/emmo/domain/oteio#> .
 
 <http://w3id.org/emmo/domain/oteio> rdf:type owl:Ontology ;
-                                   owl:versionIRI <http://w3id.org/emmo/domain/oteio/0.4.0> ;
-                                   owl:imports <https://w3id.org/emmo/1.0.0/disciplines/computerscience> ,
-                                               <https://w3id.org/emmo/1.0.0/reference/workflow> ,
-                                               <https://w3id.org/emmo/1.0.0/reference/data> ;
-                                   dcterms:abstract "An EMMO-based ontology providing a semantic descriptions for the OTE interfaces developed in the OntoTrans project." ;
-                                   dcterms:author "Jesper Friis, SINTEF" ,
-                                                  "Francesca L. Bleken, SINTEF" ;
-                                   dcterms:title "Open Translation Environment Interface Ontology (OTEIO)" ;
-                                   owl:versionInfo "0.4.0" .
+                                     owl:versionIRI <http://w3id.org/emmo/domain/oteio/0.4.0> ;
+                                     owl:imports <https://w3id.org/emmo/1.0.0/disciplines/computerscience> ,
+                                                 <https://w3id.org/emmo/1.0.0/reference/data> ,
+                                                 <https://w3id.org/emmo/1.0.0/reference/workflow> ;
+                                     dcterms:abstract "An EMMO-based ontology providing a semantic descriptions for the OTE interfaces developed in the OntoTrans project." ;
+                                     dcterms:author "Francesca L. Bleken, SINTEF" ,
+                                                    "Jesper Friis, SINTEF" ;
+                                     dcterms:title "Open Translation Environment Interface Ontology (OTEIO)" ;
+                                     owl:versionInfo "0.4.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/author
+dcterms:author rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://w3id.org/emmo/domain/oteio#generator
+:generator rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_2bb50428_568d_46e8_b8bf_59a4c5656461> ;
+           rdfs:domain :Distribution ;
+           rdfs:range :Generator ;
+           skos:prefLabel "generator"@en ;
+           <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a distribution to a generator that it can be generated from."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#parser
+:parser rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_1494c1a9_00e1_40c2_a9cc_9bbf302a1cac> ;
+        rdfs:domain :Distribution ;
+        rdfs:range :Generator ;
+        skos:prefLabel "parser"@en ;
+        <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relates a distribution to a parser that it can be parsed with."@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://w3id.org/emmo/domain/oteio#configuration
+:configuration rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_712f46a1_0aaa_4a41_b681_b10e1cc05233> ;
+               rdfs:range rdf:JSON ;
+               skos:prefLabel "configuration"@en ;
+               <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The owl:dataProperty for representing an OTE interface configuration in JSON."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#datamodelStorage
+:datamodelStorage rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_ac852bf0_3251_4d6b_9e57_acbfcb5e7e08> ;
+                  rdfs:domain :Dataset ;
+                  rdfs:range xsd:anyURI ;
+                  skos:prefLabel "datamodelStorage"@en ;
+                  <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "URL to DLite storage plugin where the datamodel is stored."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#generatorType
+:generatorType rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_b6292331_94af_4f00_976b_ea55960c2f1c> ;
+               skos:example "application/vnd.dlite-generate" ;
+               skos:prefLabel "generatorType"@en ;
+               <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Generator type, typically represented as a IANA media type."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#hasDatamodel
+:hasDatamodel rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_b35e92d7_7fa0_4661_aa5a_5cea7c8e6925> ;
+              rdfs:domain :Dataset ;
+              rdfs:range xsd:anyURI ;
+              skos:prefLabel "hasDatamodel"@en ;
+              <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "Relate a dataset to a DLite datamodel URI."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#mapping
+:mapping rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :statement ;
+         rdfs:domain :Mapping ;
+         rdfs:range rdf:JSON ;
+         skos:prefLabel "mapping"@en ;
+         <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A set of subject-predicate-object triples mapping a datamodel to ontological concepts."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#mappingFormat
+:mappingFormat rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_b6292331_94af_4f00_976b_ea55960c2f1c> ;
+               rdfs:domain :Dataset ;
+               rdfs:range xsd:string ;
+               skos:prefLabel "mappingFormat"@en ;
+               <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "File format of a resource referred to by a `mappingURL`."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#mappingURL
+:mappingURL rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_ac852bf0_3251_4d6b_9e57_acbfcb5e7e08> ;
+            rdfs:domain :Dataset ;
+            rdfs:range xsd:anyURI ;
+            skos:prefLabel "mappingURL"@en ;
+            <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "URL to a document defining the mappings of the datamodel."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#parserType
+:parserType rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_b6292331_94af_4f00_976b_ea55960c2f1c> ;
+            skos:example "Parser type, typically represented as a IANA media type."@en ;
+            skos:prefLabel "parserType"@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#statement
+:statement rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf <https://w3id.org/emmo#EMMO_712f46a1_0aaa_4a41_b681_b10e1cc05233> ;
+           rdfs:domain :Statement ;
+           rdfs:range rdf:JSON ;
+           skos:prefLabel "statement"@en ;
+           <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A set of subject-predicate-object triples with RDF statements documenting the resource."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://w3id.org/emmo/domain/oteio#Configuration
+:Configuration rdf:type owl:Class ;
+               rdfs:subClassOf <https://w3id.org/emmo#EMMO_3997e1f5_f478_4572_a030_4b8e7e5cc63a> ,
+                               <https://w3id.org/emmo#EMMO_90bfd475_ba4a_4065_b0c1_1f08230be252> ;
+               skos:prefLabel "Configuration"@en ;
+               <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "OTE Interface configuration. Represented as a JSON in the knowledge base."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#DataModel
+:DataModel rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/emmo#EMMO_13fea749_0b3b_4756_9c81_22cce620fc25> ;
+           skos:prefLabel "DataModel"@en ;
+           <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "DLite datamodel for the dataset."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.w3.org/ns/dcat#Dataset> ,
+                         <https://w3id.org/emmo#EMMO_194e367c_9783_4bf5_96d0_9ad597d48d9a> ;
+         skos:prefLabel "Dataset"@en ;
+         <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The combined subclass of both emmo:DataSet and dcat:Dataset."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Distribution
+:Distribution rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/dcat#Distribution> ,
+                              <https://w3id.org/emmo#EMMO_be8592a7_68d1_4a06_ad23_82f2b56ef926> ;
+              skos:prefLabel "Distribution"@en ;
+              <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "The combined subclass of both emmo:DiscreteData and dcat:Distribution."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Generator
+:Generator rdf:type owl:Class ;
+           rdfs:subClassOf <https://w3id.org/emmo#EMMO_65411b3d_c8d3_4111_86a9_a2ce0a64c647> ;
+           skos:prefLabel "Generator"@en ;
+           <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A program that can generate a serialised representation of a data model."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Mapping
+:Mapping rdf:type owl:Class ;
+         rdfs:subClassOf :Statement ;
+         skos:prefLabel "Mapping"@en ;
+         <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "RDF statements providing semantic documentation of a datamodel by mapping it to ontological concepts."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Parser
+:Parser rdf:type owl:Class ;
+        rdfs:subClassOf <https://w3id.org/emmo#EMMO_65411b3d_c8d3_4111_86a9_a2ce0a64c647> ;
+        skos:prefLabel "Parser"@en ;
+        <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A program that can parse a serialised representation of a data model and instantiate it."@en .
+
+
+###  http://w3id.org/emmo/domain/oteio#Statement
+:Statement rdf:type owl:Class ;
+           rdfs:subClassOf rdf:Statement ,
+                           <https://w3id.org/emmo#EMMO_90bfd475_ba4a_4065_b0c1_1f08230be252> ;
+           skos:prefLabel "Statement"@en ;
+           <https://w3id.org/emmo#EMMO_967080e5_2f42_4eb2_a3a9_c58143e835f9> "A set of RDF subject-predicate-object statements describing a resource."@en .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement
+rdf:Statement rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Dataset
+<http://www.w3.org/ns/dcat#Dataset> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Distribution
+<http://www.w3.org/ns/dcat#Distribution> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
