@@ -10,9 +10,9 @@
 
 <http://w3id.org/emmo/domain/oteio> rdf:type owl:Ontology ;
                                    owl:versionIRI <http://w3id.org/emmo/domain/oteio/0.4.0> ;
-                                   owl:imports <http://emmo.info/emmo/1.0.0/disciplines/computerscience> ,
-                                               <http://emmo.info/emmo/1.0.0/reference/workflow> ,
-                                               <http://emmo.info/emmo/1.0.0/reference/data> ;
+                                   owl:imports <https://w3id.org/emmo/1.0.0/disciplines/computerscience> ,
+                                               <https://w3id.org/emmo/1.0.0/reference/workflow> ,
+                                               <https://w3id.org/emmo/1.0.0/reference/data> ;
                                    dcterms:abstract "An EMMO-based ontology providing a semantic descriptions for the OTE interfaces developed in the OntoTrans project." ;
                                    dcterms:author "Jesper Friis, SINTEF" ,
                                                   "Francesca L. Bleken, SINTEF" ;
