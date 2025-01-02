@@ -2,13 +2,9 @@ name: CD_publish
 
 on:
   push:
+    branches:
+      - master
 
-#on:
-#  push:
-#    branches:
-#      - '[0-9]+.[0-9]+.[0-9]+'
-#      - '[0-9]+.[0-9]+.[0-9]+-*'
-#
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,37 +20,70 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Install EMMOntoPy and pyvode
+      - name: Install ROBOT
+        run: |
+          mkdir bin
+          wget -nv https://github.com/ontodev/robot/releases/download/v1.9.6/robot.jar
+          mv robot.jar bin/.
+          curl https://raw.githubusercontent.com/ontodev/robot/master/bin/robot > bin/robot
+          chmod +x bin/robot
+          ls -l bin/
+
+      - name: Install EMMOntoPy and Sphinx
         run: |
           pip install --upgrade pip
-          pip install pylode==2.13.2 git+https://github.com/EMMO-REPO/EMMOntoPy.git
+          #pip install pylode==2.13.2 git+https://github.com/EMMO-REPO/EMMOntoPy.git
+          pip install sphinx sphinxcontrib-globalsubs sphinx_design nbsphinx pydata-sphinx-theme
+          pip install git+https://github.com/emmo-repo/EMMOntoPy.git@master
+          #pip install git+https://github.com/emmo-repo/EMMOntoPy.git@fix-rename-iris
 
-      - name: Create build directory
-        run: mkdir build
+      - name: Create and prepare build and public directories
+        run: |
+          mkdir -p build public
+          if [ -d doc/_static ]; then cp -rf doc/_static/* build/. ; fi
 
-      - name: Copy json-ld context
-        run: cp -r context build/.
+      - name: Create ontologies for publishing
+        run: |
+          ontoconvert -sawe --base-iri="https://w3id.org/emmo/domain/oteio#" --iri=https://w3id.org/emmo/domain/oteio oteio.ttl public/oteio.ttl
+          #ontoconvert -sawe --base-iri="https://w3id.org/emmo/domain/oteio#" --iri=https://w3id.org/emmo/domain/oteio --reasoner=HermiT public/oteio.ttl public/oteio-inferred.ttl
+          bin/robot reason --reasoner HermiT --input public/oteio.ttl --output public/oteio-inferred.ttl
 
-      - name: Generate squashed ontology
-        run: ontoconvert -saw
-          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
-          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
-          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
-          oteio.ttl build/oteio.ttl
-          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
+      - name: Generate html documentation (based on emmo-full)
+        run: |
+          ontodoc --iri-regex='.*/oteio.*' oteio.ttl build/oteio.rst
+          sphinx-build "build/" "public/"
 
-      - name: Generate inferred ontology
-        run: ontoconvert -saw --reasoner=HermiT
-          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
-          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
-          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
-          oteio.ttl build/oteio-inferred.ttl
-          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
 
-      - name: Generate documentation
-        run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build  # The folder the action should deploy.
+
+
+#      - name: Create build directory
+#        run: mkdir build
+#
+#      - name: Copy json-ld context
+#        run: cp -r context build/.
+#
+#      - name: Generate squashed ontology
+#        run: ontoconvert -saw
+#          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
+#          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
+#          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
+#          oteio.ttl build/oteio.ttl
+#          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
+#
+#      - name: Generate inferred ontology
+#        run: ontoconvert -saw --reasoner=HermiT
+#          -c 'http://www.w3.org/2004/02/skos/core#prefLabel-->http://www.w3.org/2000/01/rdf-schema#label'
+#          -c 'elucidation-->http://www.w3.org/2000/01/rdf-schema#comment'
+#          -c 'definition-->http://www.w3.org/2000/01/rdf-schema#comment'
+#          oteio.ttl build/oteio-inferred.ttl
+#          #-c 'comment-->http://www.w3.org/2000/01/rdf-schema#comment'
+#
+#      - name: Generate documentation
+#        run: pylode -i build/oteio-inferred.ttl -o build/oteio.html -p ontdoc
+#
+#      - name: Deploy
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          folder: build  # The folder the action should deploy.
+#
