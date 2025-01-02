@@ -1,0 +1,11 @@
+# Configurations used when running emmocheck from the ci_emmocheck workflow
+skip:
+  - test_description
+
+test_number_of_labels:
+  exceptions:
+    - 0.1.Person  # foaf:Person
+    - 0.1.mbox  # foaf:mbox
+    - 22-rdf-syntax-ns.Statement  # rdf:Statement
+    - dcat.Distribution
+    - dcat.Dataset
