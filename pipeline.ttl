@@ -1,4 +1,4 @@
-@prefix : <http://emmo.info/oteio#> .
+@prefix : <http://w3id.org/emmo/domain/oteio/pipeline#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -6,19 +6,18 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://emmo.info/oteio#> .
+@base <http://w3id.org/emmo/domain/oteio/pipeline#> .
 
-<http://emmo.info/oteio/pipeline> rdf:type owl:Ontology ;
-                                   owl:versionIRI <http://emmo.info/oteio/0.3.0/pipeline> ;
-                                   owl:imports <http://emmo.info/emmo/1.0.0-beta5/disciplines/computerscience> ,
-                                               <http://emmo.info/emmo/1.0.0-beta5/multiperspective/workflow> ,
-                                               <http://emmo.info/emmo/1.0.0-beta5/perspectives/data> ;
+<http://w3id.org/emmo/domain/oteio/pipeline> rdf:type owl:Ontology ;
+                                   owl:versionIRI <http://w3id.org/emmo/domain/oteio/0.4.0/pipeline> ;
+                                   owl:imports <http://emmo.info/emmo/1.0.0/disciplines/computerscience> ,
+                                               <http://emmo.info/emmo/1.0.0/reference/workflow> ,
+                                               <http://emmo.info/emmo/1.0.0/reference/data> ;
                                    dcterms:abstract "An EMMO-based ontology providing a semantic description of OTEAPI pipelines." ;
                                    dcterms:author "Jesper Friis, SINTEF" ,
-                                                  "Thomas F. Hagelien, SINTEF" ,
                                                   "Treesa Rose Joseph, SINTEF" ;
                                    dcterms:title "Pipeline Application Ontology" ;
-                                   owl:versionInfo "0.3.0" .
+                                   owl:versionInfo "0.4.0" .
 
 #################################################################
 #    Annotation properties
